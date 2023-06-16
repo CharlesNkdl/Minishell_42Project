@@ -264,4 +264,12 @@ Etant un minishell et non un vrai Shell, voici les specifications demandes pour 
 
 ➡️ Un excellent tutoriel pour voir plus clair https://pub.phyks.me/sdz/sdz/arcourir-les-dossiers-avec-dirent-h.html
 
+## Sources :
 
+- Wikipedia
+- man
+- linux.die.net
+- man7.org
+- mkssoftware.com
+- chatgpt
+- pub.phyks.me/sdz/sdz
