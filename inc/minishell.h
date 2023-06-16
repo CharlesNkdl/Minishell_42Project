@@ -24,4 +24,8 @@
 # include <curses.h>
 # include <limits.h>
 
+void	printstrtab(char **str);
+void print_stat(struct stat st);
+void print_dirent(struct dirent *entry);
+
 #endif

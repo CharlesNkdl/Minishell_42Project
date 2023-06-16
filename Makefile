@@ -6,11 +6,11 @@
 #    By: cnikdel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/24 14:49:03 by cnikdel           #+#    #+#              #
-#    Updated: 2023/06/16 17:36:47 by cnikdel          ###   ########.fr        #
+#    Updated: 2023/06/16 18:11:46 by cnikdel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ./cnikdel/main.c
+SRCS = ./cnikdel/main.c ./cnikdel/testing.c
 
 OBJS = $(SRCS:.c=.o)
 
