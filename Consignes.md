@@ -126,3 +126,79 @@ Etant un minishell et non un vrai Shell, voici les specifications demandes pour 
     - **env** :Définit chaque NOM à VALEUR dans l'environnement et exécute COMMANDE.
     - **exit** : Quitte le shell en retournant un statut n au processus parent du shell. Si n est omis, le statut de sortie est celui de la dernière commande exécutée.
 14. ***Precision*** : readline() peut provoquer des fuites de memoires, qui ne sont pas a gerer.
+
+### 2. ***Fonctions autorises***
+
+1. **Unistd.h** :
+   - *write()* : **ssize_t write(int fd, const void *buf, size_t count)**: Cette fonction permet d'écrire les données du tampon buf vers le descripteur de fichier spécifié par fd. Elle renvoie le nombre d'octets écrits avec succès, ou -1 en cas d'erreur.
+   - *access()* : **int access(const char *path, int mode)**: Cette fonction vérifie l'accès au fichier ou au répertoire spécifié par path en fonction du mode spécifié. Elle renvoie 0 si l'accès est autorisé, ou -1 en cas d'erreur.
+   - *read()* : **ssize_t read(int fd, void *buf, size_t count)**: Cette fonction lit les données depuis le descripteur de fichier spécifié par fd et les stocke dans le tampon buf. Elle renvoie le nombre d'octets lus, ou 0 si la fin du fichier est atteinte, ou -1 en cas d'erreur.
+   - *close()* : **int close(int fd)**: Cette fonction ferme le descripteur de fichier spécifié par fd. Elle renvoie 0 en cas de succès, ou -1 en cas d'erreur.
+   - *fork()* : **pid_t fork(void)**: Cette fonction crée un nouveau processus en dupliquant le processus appelant. Elle renvoie la valeur 0 dans le processus enfant, et le PID (identifiant de processus) du processus enfant dans le processus parent, ou -1 en cas d'erreur.
+   - *getcwd()* : **char *getcwd(char *buf, size_t size)**: Cette fonction renvoie le chemin absolu du répertoire de travail courant. Le chemin est stocké dans le tampon buf d'une taille maximale spécifiée par size. Elle renvoie buf en cas de succès, ou NULL en cas d'erreur.
+   - *chdir()* : **int chdir(const char *path)**: Cette fonction change le répertoire de travail courant vers celui spécifié par path. Elle renvoie 0 en cas de succès, ou -1 en cas d'erreur.
+   - *execve()* : **int execve(const char *filename, char *const argv[], char *const envp[])**: Cette fonction remplace le processus courant par un nouveau processus exécutant le programme spécifié par filename. Les arguments de la ligne de commande sont passés via le tableau argv, et les variables d'environnement sont passées via le tableau envp. Elle ne renvoie qu'en cas d'erreur.
+   - *isatty()* : **int isatty(int fd)**: Cette fonction vérifie si le descripteur de fichier spécifié par fd est associé à un terminal. Elle renvoie 1 si c'est le cas, ou 0 sinon.
+   - *ttyname()* : **char *ttyname(int fd)**: Cette fonction renvoie le nom du terminal associé au descripteur de fichier spécifié par fd. Elle renvoie NULL en cas d'erreur.
+   - *ttyslot()* : **int ttyslot(void)**: Cette fonction renvoie le numéro de l'entrée de la table des terminaux associée au descripteur de fichier. Elle renvoie -1 en cas d'erreur.
+2. **Stdio.h** :
+   - *printf()* : **int printf(const char *format, ...)**: Cette fonction permet d'imprimer des données formatées sur la sortie standard (généralement la console). Elle accepte un format de chaîne spécifié par format qui contrôle la manière dont les données sont affichées. Les arguments supplémentaires fournis seront insérés dans les emplacements spécifiés dans la chaîne de format. Elle renvoie le nombre de caractères imprimés avec succès.
+3. **Stdlib.h** :
+   - *malloc()* : **void *malloc(size_t size)**: Cette fonction alloue dynamiquement un bloc de mémoire de la taille spécifiée par size en octets. Elle renvoie un pointeur vers le début du bloc de mémoire alloué, ou NULL en cas d'échec.
+   - *exit()* : **void exit(int status)**: Cette fonction termine immédiatement l'exécution du programme en retournant le statut spécifié par status à son processus parent ou au système d'exploitation. Elle peut être utilisée pour quitter le programme de manière contrôlée à n'importe quel point.
+   - *unlink()* : **int unlink(const char *path)**: Cette fonction supprime le fichier spécifié par path du système de fichiers. Elle renvoie 0 en cas de succès, ou -1 en cas d'échec.
+   - *getenv()* : **char *getenv(const char *name)**: Cette fonction renvoie la valeur de la variable d'environnement spécifiée par name. Elle est utilisée pour accéder aux informations stockées dans les variables d'environnement du système. Si la variable n'est pas trouvée, elle renvoie NULL.
+4. **Readline.h** :
+   - *readline()* : **char *readline(const char *prompt)**: Cette fonction affiche le message d'invite spécifié par prompt et lit une ligne de texte depuis l'entrée standard. Elle renvoie un pointeur vers la chaîne de caractères contenant la ligne lue.
+   - *rl_clear_history()* : **void rl_clear_history()**: Cette fonction efface l'historique des lignes de commande précédemment saisies à l'aide de la fonction readline()
+   - *rl_on_new_line()* : **void rl_on_new_line()**: Cette fonction signale à la bibliothèque readline qu'une nouvelle ligne de commande a été saisie et que les opérations suivantes devraient être effectuées à partir de la première colonne de la ligne.
+   - *rl_replace_line()* : **void rl_replace_line(const char *text, int clear_undo)**: Cette fonction remplace la ligne de commande actuelle par la chaîne de caractères spécifiée par text. Si clear_undo est différent de 0, l'historique des modifications de ligne est également effacé.
+   - *rl_redisplay()* : **void rl_redisplay()**: Cette fonction réaffiche la ligne de commande actuelle.
+   - *add_history()* : **void add_history(const char *line)**: Cette fonction ajoute la ligne spécifiée par line à l'historique des lignes de commande.
+5. **Termios.h** :
+   - *tcsetattr()* : **int tcsetattr(int fd, int optional_actions, const struct termios *termios_p)**: Cette fonction modifie les attributs du terminal associé au descripteur de fichier fd en utilisant les paramètres spécifiés dans la structure termios_p. L'argument optional_actions spécifie quand les changements doivent prendre effet. Elle renvoie 0 en cas de succès, ou -1 en cas d'échec.
+   - *tcgetattr()* : **int tcgetattr(int fd, struct termios *termios_p)**: Cette fonction obtient les attributs actuels du terminal associé au descripteur de fichier fd et les stocke dans la structure termios_p. Elle renvoie 0 en cas de succès, ou -1 en cas d'échec.
+6. **String.h** :
+   - *strerror()* : **char *strerror(int errnum)**: Cette fonction renvoie une chaîne de caractères décrivant le message d'erreur correspondant au code d'erreur spécifié par errnum. Elle est souvent utilisée pour obtenir une description textuelle d'une erreur.
+7. **errno.h** :
+   - *perror()* : **void perror(const char *str)**: Cette fonction affiche le message d'erreur correspondant à la valeur de la variable errno actuelle, préfixé par la chaîne str.
+8. **dirent.h** :
+   - *opendir()* : **DIR *opendir(const char *name)**: Cette fonction ouvre le répertoire spécifié par name et renvoie un pointeur vers une structure de type DIR, qui peut être utilisée pour lire le contenu du répertoire.
+   - *readdir()* : struct dirent *readdir(DIR *dirp): Cette fonction lit une entrée du répertoire spécifié par le pointeur dirp et renvoie un pointeur vers une structure de type dirent contenant les informations de l'entrée du répertoire suivante.
+   - *closedir()* : **int closedir(DIR *dirp)**: Cette fonction ferme le répertoire spécifié par le pointeur dirp. Elle renvoie 0 en cas de succès, ou -1 en cas d'erreur.
+9. **fcntl.h** :
+   - *open()* : **int open(const char *pathname, int flags, mode_t mode)**: Cette fonction ouvre le fichier spécifié par pathname avec les indicateurs de flags spécifiés, et renvoie le descripteur de fichier correspondant. Si nécessaire, le mode du fichier peut être spécifié avec mode.
+   - *dup()* : **int dup(int oldfd)**: Cette fonction duplique le descripteur de fichier oldfd, en renvoyant un nouveau descripteur de fichier qui fait référence au même fichier ouvert.
+   - *dup2()* : **int dup2(int oldfd, int newfd)**: Cette fonction duplique le descripteur de fichier oldfd vers newfd, en fermant newfd au préalable s'il est ouvert. Elle assure que newfd fait référence au même fichier que oldfd.
+   - *pipe()* : **int pipe(int pipefd[2])**: Cette fonction crée un tube (pipe) unidirectionnel, et renvoie les descripteurs de fichier pipefd pour la lecture (pipefd[0]) et l'écriture (pipefd[1]).
+10. **sys/wait.h** :
+    - *wait()* : **pid_t wait(int *status)**: Cette fonction suspend l'exécution du processus appelant jusqu'à ce qu'un de ses processus enfants se termine. Elle renvoie le PID du processus enfant terminé et met à jour la valeur de status pour refléter le statut de sortie du processus enfant.
+    - *waitpid()* : **pid_t waitpid(pid_t pid, int *status, int options)**: Cette fonction attend la terminaison d'un processus enfant spécifié par pid. Elle renvoie le PID du processus enfant terminé et met à jour la valeur de status pour refléter son statut de sortie. Les options supplémentaires peuvent être spécifiées avec options.
+11. **sys/types.h** :
+    - Necessaire pour certaines fonctions
+12. **sys/stat.h** :
+    - *stat()* : **int stat(const char *path, struct stat *buf)**: Cette fonction récupère les informations sur le fichier spécifié par path et les stocke dans la structure buf. Elle renvoie 0 en cas de succès, ou -1 en cas d'erreur.
+    - *lstat()* : **int lstat(const char *path, struct stat *buf)**: Cette fonction est similaire à stat(), mais lorsqu'elle est utilisée avec un lien symbolique, elle renvoie les informations sur le lien symbolique lui-même, plutôt que sur le fichier auquel il pointe.
+    - *fstat()* : **int fstat(int fd, struct stat *buf)**: Cette fonction récupère les informations sur le descripteur de fichier fd et les stocke dans la structure buf. Elle est utilisée pour obtenir des informations sur un fichier ouvert.
+13. **sys/ioctl.h** :
+    - *ioctl()* : **int ioctl(int fd, unsigned long request, ... )**: Cette fonction effectue diverses opérations de contrôle sur le périphérique associé au descripteur de fichier fd. Les opérations spécifiques sont définies par request et peuvent avoir des arguments supplémentaires facultatifs.
+14. **signal.h** :
+    - *signal()* : **void (*signal(int signum, void (*handler)(int)))(int)**: Cette fonction permet de capturer et de gérer les signaux logiciels spécifiés par signum. Elle associe le gestionnaire de signal spécifié par handler au signal donné. Elle renvoie le gestionnaire de signal précédent.
+    - *sigaction()* : **int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)** : Cette fonction permet de modifier le comportement du signal spécifié par signum en utilisant les paramètres spécifiés dans la structure act. Elle renvoie 0 en cas de succès, ou -1 en cas d'erreur.
+    - *sigemptyset()* : **int sigemptyset(sigset_t *set)**: Cette fonction initialise l'ensemble de signaux spécifié par set en le vidant de tous les signaux.
+    - *sigaddset()* : **int sigaddset(sigset_t *set, int signum)**: Cette fonction ajoute le signal spécifié par signum à l'ensemble de signaux spécifié par set.
+    - *kill()* : **int kill(pid_t pid, int signum)**: Cette fonction envoie le signal spécifié par signum au processus avec le PID spécifié par pid.
+15. **term.h et curses.h** :
+    - *tgetent()* : **int tgetent(char *bp, const char *name)**: Cette fonction initialise la bibliothèque terminfo en lisant les informations de capacité du terminal spécifié par name et les stocke dans le buffer bp. Elle renvoie 1 en cas de succès, 0 si le terminal n'est pas trouvé ou -1 en cas d'erreur.
+    - *tgetflag()* : **int tgetflag(const char *id)**: Cette fonction renvoie la valeur de la capacité de drapeau associée à l'identifiant id` spécifié. Elle est utilisée pour récupérer les informations sur les drapeaux du terminal.
+    - *tgetnum()* : **int tgetnum(const char *id)**: Cette fonction renvoie la valeur de la capacité numérique associée à l'identifiant id spécifié. Elle est utilisée pour récupérer les informations sur les valeurs numériques du terminal.
+    - *tgetstr()* : **char *tgetstr(const char *id, char *\*area)**: Cette fonction renvoie la valeur de la capacité de chaîne associée à l'identifiant id spécifié. Elle est utilisée pour récupérer les informations sur les séquences de contrôle du terminal.
+    - *tgoto()* : **char *tgoto(const char *cap, int col, int row)**: Cette fonction génère une séquence de contrôle pour se déplacer à la position spécifiée par les coordonnées col et row. Elle utilise la capacité spécifiée par cap pour construire la séquence de contrôle.
+    - *tputs()* : **int tputs(const char *str, int affcnt, int (*putc)(int))**: Cette fonction envoie la séquence de contrôle spécifiée par str au terminal. Le paramètre affcnt indique combien de lignes sont affectées par la séquence de contrôle. La fonction putc est utilisée pour envoyer chaque caractère individuellement.
+16.  **Obsolete** :
+     - *wait3()* : obsolete selon le manuel, plutot utilise waitpid ou waitid, l'equivalent de wait3 est **waitpid(-1, status, options)**. Wait 3 attends n'importe quel child.
+     - *wait4()* : idem, l'equivalent de wait4 est **waitpid(pid, status, options)**. Wait 4 lui attends un child specifique.
+
+
+
+
