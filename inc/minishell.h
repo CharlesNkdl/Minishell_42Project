@@ -1,6 +1,9 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "../Libft/Headers/ft_printf.h"
+# include "../Libft/Headers/get_next_line_bonus.h"
+# include "../Libft/Headers/libft.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>

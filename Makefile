@@ -6,11 +6,11 @@
 #    By: cnikdel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/24 14:49:03 by cnikdel           #+#    #+#              #
-#    Updated: 2023/06/16 11:26:26 by cnikdel          ###   ########.fr        #
+#    Updated: 2023/06/16 17:36:47 by cnikdel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ......
+SRCS = ./cnikdel/main.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -31,11 +31,11 @@ NAME = minishell
 
 all : $(NAME)
 
-$(MFLAGS):
+$(LIBFT):
 	$(MAKE) -C ./Libft
 
-$(NAME): $(MFLAGS)
-	$(CC) $(SRCS) $(AFLAGS) $(LIBFT) $(LIB) $(INC) -o $(NAME)
+$(NAME): $(LIBFT)
+	$(CC) $(SRCS) $(LIBFT) $(AFLAGS) $(LIBFT) $(LIB) $(INC) -o $(NAME)
 
 fclean : clean
 	$(MAKE) fclean -C ./Libft
