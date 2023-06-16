@@ -264,7 +264,40 @@ Etant un minishell et non un vrai Shell, voici les specifications demandes pour 
 
 ➡️ Un excellent tutoriel pour voir plus clair https://pub.phyks.me/sdz/sdz/arcourir-les-dossiers-avec-dirent-h.html
 
-## Sources :
+## Ressources qui ont l'air utile
+
+- https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
+- https://minishell.simple.ink/
+- https://betterprogramming.pub/how-bash-works-8424becc12f3 ➡️ Shell
+- https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html ➡️ Shell
+- https://stackoverflow.com/questions/6697753/difference-between-single-and-double-quotes-in-bash ➡️ Shell
+- https://cs61.seas.harvard.edu/site/2019/Section7/ ➡️ Shell
+- https://ast-viewer.datacamp.com/editor?code=echo%20%22oui%22&start=NA&grammar=shell ➡️ Permet de simuler la reflexion du parser bash en graphique pour mieux visualiser
+- http://www-igm.univ-mlv.fr/~dr/NCSPDF/chapitre11.pdf ➡️ Signaux
+- https://unix.stackexchange.com/questions/159513/what-are-the-shells-control-and-redirection-operators
+- https://codes-sources.commentcamarche.net/forum/affich-10047436-developper-un-shell-de-base
+- https://zestedesavoir.com/tutoriels/1733/termcap-et-terminfo/#1-le-terminal-1
+- http://i.paysdu42.fr/?page=minishell.c Schema tres general, du minishell d'Epitech, surement difference de sujet
+- https://www.lamsade.dauphine.fr/~bnegrevergne/ens/Unix/static/projet.pdf sujet minishell de l'universite Paris Dauphine, avec quelques precisions sur les etapes possibles
+- https://stackoverflow.com/questions/13636252/c-minishell-adding-pipelines
+- https://nickolasteixeira.medium.com/want-to-build-a-simple-shell-heres-how-you-do-it-75890647bae8
+
+### Geeks for Geeks le S
+
+- https://www.geeksforgeeks.org/input-output-system-calls-c-create-open-close-read-write/
+- https://www.geeksforgeeks.org/pipe-system-call/?ref=rp
+- https://www.geeksforgeeks.org/wait-system-call-c/?ref=rp
+- https://www.geeksforgeeks.org/fork-system-call/?ref=rp
+- https://www.geeksforgeeks.org/making-linux-shell-c/
+- https://www.geeksforgeeks.org/dup-dup2-linux-system-call/?ref=ml_lbp
+- https://www.geeksforgeeks.org/chdir-in-c-language-with-examples/
+
+### Developpez.com pas mal aussi
+
+- https://chrtophe.developpez.com/tutoriels/minisysteme/
+- https://rperrot.developpez.com/articles/algo/structures/arbres/ arbre de logique abstraite pour lexer/parser semble revenir souvent
+
+## Sources utilise pour le Readme
 
 - Wikipedia
 - man
@@ -273,3 +306,4 @@ Etant un minishell et non un vrai Shell, voici les specifications demandes pour 
 - mkssoftware.com
 - chatgpt
 - pub.phyks.me/sdz/sdz
+- gnu.org
