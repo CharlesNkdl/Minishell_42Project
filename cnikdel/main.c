@@ -36,15 +36,30 @@ int main(void)
 	dirbuff = readdir(tester);
 	print_dirent(dirbuff);
 
-	printf("CHDIR TRY \n \n");
-	chdir(ft_strjoin(path,"/cnikdel"));
+	//On test un cd
+	printf("\n \n CHDIR TRY \n \n");
+	//ca prends comme arguments un path, du coup vu que je veux changer de directory, je fais un join avec un nom de fichier
+	chdir(ft_strjoin(path,"/cnikdel")); //c'est un changement RELATIF pck on ajoute juste un truc(genre cd cnikdel)
+	//je recommence tout et je compare
+	getcwd(path, sizeof(path));
+	ft_printf("AFTER CWD %s\n",path);
 	tester = opendir(path);
 	dirbuff = readdir(tester);
 	print_dirent(dirbuff);
-	getcwd(path, sizeof(path));
-	ft_printf("%s\n",path);
 
-	// Permet de remplir la struct stat
+	stat(path, &oui);
+	print_stat(oui);
+
+	printf("\n \n CHDIR ABSOLU TRY \n \n");
+	printf("trimmed : %s \n", ft_strtrim(path, "/cnikdel"));
+	chdir(ft_strjoin("/",ft_strtrim(path, "/cnikdel"))); //c'est un changement ABSOLU pck on ajoute tout le chemin
+	//Bon le strjoin avec un strtrim c'est moche de ouf, mais c'est juste que du coup ca retirer aussi le premier / mdr, c'est juste des tests
+	//je recommence tout et je compare
+	getcwd(path, sizeof(path));
+	ft_printf("AFTER CWD %s\n",path);
+	tester = opendir(path);
+	dirbuff = readdir(tester);
+	print_dirent(dirbuff);
 	stat(path, &oui);
 	print_stat(oui);
 
