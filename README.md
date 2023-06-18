@@ -264,6 +264,12 @@ Etant un minishell et non un vrai Shell, voici les specifications demandes pour 
 
 ➡️ Un excellent tutoriel pour voir plus clair https://pub.phyks.me/sdz/sdz/arcourir-les-dossiers-avec-dirent-h.html
 
+### 3. Observations et reflexions au fur et a mesure du sujet
+
+- Pour la gestion de ctrl-d, ctrl-c et ctrl-/, cela envoie un signal, que l'on peut capter via les signaux pour modifier
+- On peut peut-etre gerer cd et la gestion de path a base de strjoin et strtrim, mais il y a surement un meilleur moyen, a voir
+-
+
 ## Ressources qui ont l'air utile
 
 - https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html

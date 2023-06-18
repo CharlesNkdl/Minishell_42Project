@@ -36,6 +36,7 @@ int main(void)
 	dirbuff = readdir(tester);
 	print_dirent(dirbuff);
 
+
 	//On test un cd
 	printf("\n \n CHDIR TRY \n \n");
 	//ca prends comme arguments un path, du coup vu que je veux changer de directory, je fais un join avec un nom de fichier
@@ -46,9 +47,9 @@ int main(void)
 	tester = opendir(path);
 	dirbuff = readdir(tester);
 	print_dirent(dirbuff);
-
 	stat(path, &oui);
 	print_stat(oui);
+
 
 	printf("\n \n CHDIR ABSOLU TRY \n \n");
 	printf("trimmed : %s \n", ft_strtrim(path, "/cnikdel"));
@@ -70,6 +71,7 @@ int main(void)
 		buffer = readline("Commande : ");
 		//Permet de mettre la commande dans un historique, on peut du coup le recuperer avec les fleches dans le shell
 		add_history(buffer);
+		token(buffer);
 		if (lexer(buffer) == 1)
 			perror("Invalid Command");
 		ft_printf("%s\n", buffer);
