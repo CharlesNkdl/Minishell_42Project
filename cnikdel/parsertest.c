@@ -28,19 +28,23 @@ qq fonctions d'aide me viennent a l'esprit pour la suite:
 
 /*on va y aller comme un debile pour le moment*/
 
-void	passwhite(char *str)
+char *passwhite(char *str)
 {
 	while (*str && (*str == ' ' || *str== 9))
 		str++;
+	return (str);
 }
 
 int		stupid(char *str)
 {
-	if (ft_strnstr(str, "echo -n", 7))
-		return 'N';
-	else if (ft_strnstr(str, "echo", 4))
-		return 'E';
-	if (ft_strnstr(str, "cd", 2))
+	if (ft_strnstr(str, "echo", 4))
+	{
+		if (ft_strnstr(passwhite(str + 5),"-n", 2))
+			return 'N';
+		else
+			return 'E';
+	}
+	if (ft_strnstr(str, "cd", 4))
 		return 'C';
 	if (ft_strnstr(str, "pwd", 3))
 		return 'P';
@@ -58,7 +62,7 @@ int		stupid(char *str)
 
 t_token *token(char *str)
 {
-	passwhite(str);
+	str = passwhite(str);
 	int result = stupid(str);
 	printf ("result %c \n", result);
 	if (str)

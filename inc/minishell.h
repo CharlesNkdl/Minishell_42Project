@@ -25,7 +25,7 @@
 # include <limits.h>
 
 typedef struct s_token {
-	char token;
+	int token;
 	char *content;
 	unsigned int order;
 	struct s_token *next;
