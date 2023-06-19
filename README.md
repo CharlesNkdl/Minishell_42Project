@@ -288,6 +288,7 @@ Etant un minishell et non un vrai Shell, voici les specifications demandes pour 
 - https://stackoverflow.com/questions/13636252/c-minishell-adding-pipelines
 - https://nickolasteixeira.medium.com/want-to-build-a-simple-shell-heres-how-you-do-it-75890647bae8
 - https://www.youtube.com/watch?v=cIBmeEpsMj0&list=PLxIRFba3rzLzxxZMMbrm_-mkI7mV9G0pj ➡️ series de video Ytb, explique bien
+- https://www.youtube.com/watch?v=PwxTbksJ2fo forks
 
 ### Geeks for Geeks le S
 
