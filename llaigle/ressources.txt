@@ -1,0 +1,55 @@
+
+
+
+                                             MINISHELL
+
+
+
+- PROMPT pour l'attente d'une nouvelle commande
+
+
+
+
+- HISTORIQUE des commandes rentrees dans notre pseudo terminal
+
+readline + add_history.
+
+
+
+
+- PATH pour chercher le bon executable
+
+
+
+
+- Ne pas interpreter les quotes non fermes, caracteres speciaux non demandes (backslash ou point virgule)
+
+
+
+
+- GERER single quote et double quote
+
+
+
+
+- REDIRECTIONS = <, >, <<, >>.
+
+
+
+
+- PIPES = |
+
+
+
+
+- VARIABLES D'ENVIRONNEMENT = $ + sequence de caracteres et gerer aussi '$?'
+
+
+
+
+- GERER les ctrl : C, D et \ comme dans bash
+
+
+
+
+- BUILTINS : echo + -n, cd, pwd, export, unset, env et exit
