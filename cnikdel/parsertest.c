@@ -67,9 +67,9 @@ t_token *token(char *str)
 	buffer = ft_split(str, ' ');
 	//pb du split c'est que du coup, les arguments aussi ne sont pas parsed
 	printstrtab(buffer);
-	str = passwhite(str);
-	int result = stupid(str);
-	printf ("result %c \n", result);
+	//str = passwhite(str);
+	//int result = stupid(str);
+	//printf ("result %c \n", result);
 	if (str)
 		return (NULL);
 	return (NULL);

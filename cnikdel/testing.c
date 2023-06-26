@@ -3,6 +3,7 @@
 void	printstrtab(char **str)
 {
 	char *buffer;
+	char *nl = "\n";
 
 	while (*str)
 	{
@@ -12,6 +13,7 @@ void	printstrtab(char **str)
 			write(1,buffer, 1);
 			buffer++;
 		}
+		write(1,nl,1);
 		str++;
 	}
 }
