@@ -112,9 +112,29 @@ t_token *init(t_token *yes)
 int ft_strlenms(char *str)
 {
 	int i;
+	int check;
 
 	i = 0;
-	while (str[i] && (str[i] != ' '))
+	check = 0;
+	if (str[i] == '|')
+		return (1);
+	if (str[i] == '>' || str[i] == '<')
+	{
+		while (str[i] && (str[i] == '>' || str[i] == '<' ))
+			i++;
+		return (i);
+	}
+	if (str[i] == 39 || str[i] == 34)
+	{
+		check = (int)str[i];
+		i++;
+		while (str[i] && str[i] != check)
+            i++;
+        if (str[i] == check)
+			i++;
+        return (i);
+	}
+	while (str[i] && (str[i] != ' ' && str[i] != '|' && str[i] != '>' && str[i] != '<'))
 		i++;
 	return (i);
 }
