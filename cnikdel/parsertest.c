@@ -42,72 +42,7 @@ char *password(char *str)
 	return (str);
 }
 
-int		stupid(char *str)
-{
-	if (ft_strnstr(str, "echo", 4))
-	{
-		if (ft_strnstr(passwhite(str + 5),"-n", 2))
-			return 'N';
-		else
-			return 'E';
-	}
-	if (ft_strnstr(str, "cd", 4))
-		return 'C';
-	if (ft_strnstr(str, "pwd", 3))
-		return 'P';
-	if (ft_strnstr(str, "export", 6))
-		return 'X';
-	if (ft_strnstr(str, "unset", 5))
-		return 'U';
-	if (ft_strnstr(str, "env", 3))
-		return 'V';
-	if (ft_strnstr(str, "exit", 4))
-		return 'Z';
-	else
-		return (0);
-}
 
-void printList(t_token *head)
-{
-    t_token *current = head;
-
-    while (current != NULL)
-    {
-        printf("Command: %s\n", current->command);
-        printf("Argument: %s\n", current->arg);
-        printf("Content: %s\n", current->content);
-        printf("Quote: %d\n", current->quote);
-        printf("Order: %d\n", current->order);
-        printf("Pipe Left: %d\n", current->pipeleft);
-        printf("Pipe Right: %d\n", current->piperight);
-        printf("Redirect Left: %d\n", current->redirleft);
-        printf("Double Redirect Left: %d\n", current->reredirleft);
-        printf("Redirect Right: %d\n", current->redirright);
-        printf("Double Redirect Right: %d\n", current->reredirright);
-
-        current = current->next;
-    }
-}
-
-t_token *init(t_token *yes)
-{
-	yes = malloc(sizeof(t_token));
-	if (!yes)
-		return (NULL);
-	yes->command = NULL;
-	yes->arg = NULL;
-	yes->content = NULL;
-	yes->quote = 0;
-	yes->order = 0;
-	yes->pipeleft = 0;
-	yes->piperight = 0;
-	yes->redirleft = 0;
-	yes->reredirleft = 0;
-	yes->redirright = 0;
-	yes->reredirright = 0;
-	yes->next = NULL;
-	return (yes);
-}
 
 int ft_strlenms(char *str)
 {
@@ -150,38 +85,33 @@ void printLinkedList(t_list *head)
 
 	printf("\n");
 }
-t_token *token(char *str)
+
+t_list *token(t_minishell *mini)
 {
-	//t_token *oui;
 	int len;
-	int order;
-	int i = -1;
-	t_list *head;
+	int i;
 	char *content;
 
-	head = NULL;
-	order = 0;
 	len = 0;
-	while (*str != '\0')
+	i = -1;
+	while (*mini->reader != '\0')
 	{
-		str = passwhite(str);
-		if (*str == '\0')
+		mini->reader = passwhite(mini->reader);
+		if (*mini->reader == '\0')
 			break;
-		len = ft_strlenms(str);
-		printf("%d \n", len);
+		len = ft_strlenms(mini->reader);
 		content = malloc(len + 1);
+		if (!content)
+			return (NULL);
 		while (++i < len)
-			content[i] = str[i];
+			content[i] = mini->reader[i];
 		content[i] = '\0';
-		ft_lstadd_back(&head, ft_lstnew(ft_strdup(content)));
+		ft_lstadd_back(&mini->head, ft_lstnew(ft_strdup(content)));
 		free(content);
-		str = str + len;
+		mini->reader = mini->reader + len;
 		i = -1;
-		order++;
 	}
-	printLinkedList(head);
-	printf("%d" , ft_lstsize(head));
-	if (str)
-		return (NULL);
-	return (NULL);
+	printLinkedList(mini->head);
+
+	return (mini->head);
 }

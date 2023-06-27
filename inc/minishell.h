@@ -45,9 +45,18 @@ typedef struct s_token {
 	struct s_token *next;
 } t_token;
 
+typedef struct s_minishell {
+	char *reader;
+	char **envp;
+	t_list *head;
+
+
+} t_minishell;
+
 void	printstrtab(char **str);
 void print_stat(struct stat st);
 void print_dirent(struct dirent *entry);
-t_token *token(char *str);
+t_list *token(t_minishell *str);
+void	free_tok(t_list **bucket);
 
 #endif
