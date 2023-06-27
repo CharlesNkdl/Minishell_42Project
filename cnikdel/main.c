@@ -11,6 +11,10 @@ int	lexer(char *str)
 int main(void)
 {
 	char *buffer;
+
+
+	/*
+
 	char path[512];
 	//Struct issu de la librairie pour stocker les infos quand on appelle stat
 	struct stat oui;
@@ -64,7 +68,7 @@ int main(void)
 	stat(path, &oui);
 	print_stat(oui);
 
-
+	*/
 	while (1)
 	{
 		//Demande de lire
@@ -72,9 +76,9 @@ int main(void)
 		//Permet de mettre la commande dans un historique, on peut du coup le recuperer avec les fleches dans le shell
 		add_history(buffer);
 		token(buffer);
-		if (lexer(buffer) == 1)
-			perror("Invalid Command");
-		ft_printf("%s\n", buffer);
+		//if (lexer(buffer) == 1)
+			//perror("Invalid Command");
+		//ft_printf("%s\n", buffer);
 		rl_on_new_line();
 	}
 }

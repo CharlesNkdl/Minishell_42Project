@@ -24,10 +24,24 @@
 # include <curses.h>
 # include <limits.h>
 
+/* COMMAND = commande
+	ARG = arg type -n
+	CONTENT = ce qu'il y a ecrit
+	quote = 0 pas de quote, 1 single, 2 double
+	order = si c'est la commande 0 , 1, 2 ....
+	pour le reste : 0 = pas present, 1 = present */
 typedef struct s_token {
-	int token;
+	char *command;
+	char *arg;
 	char *content;
+	int quote;
 	unsigned int order;
+	int	pipeleft;
+	int	piperight;
+	int redirleft;
+	int reredirleft;
+	int redirright;
+	int reredirright;
 	struct s_token *next;
 } t_token;
 

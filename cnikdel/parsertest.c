@@ -35,6 +35,13 @@ char *passwhite(char *str)
 	return (str);
 }
 
+char *password(char *str)
+{
+	while (*str && (*str != ' '))
+		str++;
+	return (str);
+}
+
 int		stupid(char *str)
 {
 	if (ft_strnstr(str, "echo", 4))
@@ -60,16 +67,103 @@ int		stupid(char *str)
 		return (0);
 }
 
+void printList(t_token *head)
+{
+    t_token *current = head;
+
+    while (current != NULL)
+    {
+        printf("Command: %s\n", current->command);
+        printf("Argument: %s\n", current->arg);
+        printf("Content: %s\n", current->content);
+        printf("Quote: %d\n", current->quote);
+        printf("Order: %d\n", current->order);
+        printf("Pipe Left: %d\n", current->pipeleft);
+        printf("Pipe Right: %d\n", current->piperight);
+        printf("Redirect Left: %d\n", current->redirleft);
+        printf("Double Redirect Left: %d\n", current->reredirleft);
+        printf("Redirect Right: %d\n", current->redirright);
+        printf("Double Redirect Right: %d\n", current->reredirright);
+
+        current = current->next;
+    }
+}
+
+t_token *init(t_token *yes)
+{
+	yes = malloc(sizeof(t_token));
+	if (!yes)
+		return (NULL);
+	yes->command = NULL;
+	yes->arg = NULL;
+	yes->content = NULL;
+	yes->quote = 0;
+	yes->order = 0;
+	yes->pipeleft = 0;
+	yes->piperight = 0;
+	yes->redirleft = 0;
+	yes->reredirleft = 0;
+	yes->redirright = 0;
+	yes->reredirright = 0;
+	yes->next = NULL;
+	return (yes);
+}
+
+int ft_strlenms(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] && (str[i] != ' '))
+		i++;
+	return (i);
+}
+void printLinkedList(t_list *head)
+{
+	t_list *current = head;
+
+	while (current != NULL)
+	{
+		printf("%s ", (char *)(current->content));
+		current = current->next;
+	}
+
+	printf("\n");
+}
 t_token *token(char *str)
 {
-	char **buffer;
+	//t_token *oui;
+	int len;
+	int order;
+	int i = -1;
+	t_list *head;
+	char *content;
 
-	buffer = ft_split(str, ' ');
-	//pb du split c'est que du coup, les arguments aussi ne sont pas parsed
-	printstrtab(buffer);
-	//str = passwhite(str);
-	//int result = stupid(str);
-	//printf ("result %c \n", result);
+	head = NULL;
+	order = 0;
+	len = 0;
+	/*oui = NULL;
+	oui = init(oui);
+	printList(oui);*/
+	while (*str != '\0')
+	{
+		str = passwhite(str);
+		if (*str == '\0')
+			break;
+		len = ft_strlenms(str);
+		printf("%d \n", len);
+		content = malloc(len + 1);
+		while (++i < len)
+			content[i] = str[i];
+		content[i] = '\0';
+		ft_lstadd_back(&head, ft_lstnew(ft_strdup(content)));
+		free(content);
+		str = str + len;
+		i = -1;
+		order++;
+	}
+	printLinkedList(head);
+	printf("%d" , ft_lstsize(head));
 	if (str)
 		return (NULL);
 	return (NULL);
