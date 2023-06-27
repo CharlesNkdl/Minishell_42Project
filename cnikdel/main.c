@@ -8,9 +8,13 @@ int	lexer(char *str)
 }
 
 // int argc, char **argv, char **envp
-int main(void)
+int main(int argc, char **argv, char **envp)
 {
 	char *buffer;
+	(void) argc;
+	(void) argv;
+
+	printstrtab(envp);
 
 
 	/*

@@ -162,9 +162,6 @@ t_token *token(char *str)
 	head = NULL;
 	order = 0;
 	len = 0;
-	/*oui = NULL;
-	oui = init(oui);
-	printList(oui);*/
 	while (*str != '\0')
 	{
 		str = passwhite(str);
