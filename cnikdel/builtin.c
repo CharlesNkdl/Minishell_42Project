@@ -2,7 +2,7 @@
 
 void    ft_builtins(t_minishell *mini)
 {
-    char    *path = ft_strjoin("/bin/", mini->head->content);
+    char    *path = ft_strjoin("/bin/", (char *)mini->head->content);
     char    *str[4] = {mini->head->content,mini->head->next->content,mini->head->next->next->content, NULL};
 
 	pid_t pid = fork();
