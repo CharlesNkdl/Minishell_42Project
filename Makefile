@@ -6,11 +6,12 @@
 #    By: cnikdel <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/24 14:49:03 by cnikdel           #+#    #+#              #
-#    Updated: 2023/06/27 21:35:13 by cnikdel          ###   ########.fr        #
+#    Updated: 2023/06/28 20:52:43 by cnikdel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ./cnikdel/main.c ./cnikdel/testing.c ./cnikdel/parsertest.c ./cnikdel/freefunct.c
+SRCS = ./cnikdel/main.c ./cnikdel/testing.c ./cnikdel/parsertest.c ./cnikdel/freefunct.c \
+       ./cnikdel/builtin.c
 
 OBJS = $(SRCS:.c=.o)
 

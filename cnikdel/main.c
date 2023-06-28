@@ -29,10 +29,12 @@ int main(int argc, char **argv, char **envp)
 		//Permet de mettre la commande dans un historique, on peut du coup le recuperer avec les fleches dans le shell
 		add_history(mini->reader);
 		token(mini);
+		printLinkedList(mini->head);
+		ft_builtins(mini->head->content);
 		free_tok(&mini->head);
 		//if (lexer(buffer) == 1)
 			//perror("Invalid Command");
 		//ft_printf("%s\n", buffer);
-		rl_on_new_line();
+		//rl_on_new_line();
 	}
 }

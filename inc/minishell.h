@@ -58,5 +58,6 @@ void print_stat(struct stat st);
 void print_dirent(struct dirent *entry);
 t_list *token(t_minishell *str);
 void	free_tok(t_list **bucket);
-
+void    ft_builtins(t_minishell *mini);
+void printLinkedList(t_list *head);
 #endif

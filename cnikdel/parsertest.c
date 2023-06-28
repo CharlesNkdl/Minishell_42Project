@@ -111,7 +111,7 @@ t_list *token(t_minishell *mini)
 		mini->reader = mini->reader + len;
 		i = -1;
 	}
-	printLinkedList(mini->head);
+	//printLinkedList(mini->head);
 
 	return (mini->head);
 }
