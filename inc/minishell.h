@@ -60,4 +60,6 @@ t_list *token(t_minishell *str);
 void	free_tok(t_list **bucket);
 void    ft_builtins(t_minishell *mini);
 void printLinkedList(t_list *head);
+void	parser(t_minishell **mini);
+
 #endif

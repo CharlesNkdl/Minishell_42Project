@@ -113,3 +113,44 @@ t_list *token(t_minishell *mini)
 
 	return (mini->head);
 }
+char  *substractquote(char *str, int check)
+{
+	char *buffer;
+	(void)check;
+
+	buffer = 0;
+	buffer = ft_substr(str, 1, ft_strlen(str) - 1);
+	free(str);
+	return (buffer);
+}
+
+void	parser(t_minishell **mini)
+{
+	t_list *ptr;
+	int	check;
+	char *content;
+
+	check = 0;
+	ptr = (*mini)->head;
+	while (ptr)
+	{
+		content = ptr->content;
+		while (*content)
+		{
+			if (*(content) == 34 && check != 3)
+				check += 1;
+			if (*(content) == 39 && check != 1)
+				check += 3;
+			/*if (check == 1 && ptr->content == '$')
+				replacethis((char *)ptr->content);*/
+			content = content + 1;
+		}
+		if (check != 0 && (check % 2))
+			perror("parsing");
+		else if (check != 0)
+			*(char *)(ptr->content) = *substractquote((char *)ptr->content, check);
+		check = 0;
+		ptr = ptr->next;
+	}
+	printLinkedList((*mini)->head);
+}
