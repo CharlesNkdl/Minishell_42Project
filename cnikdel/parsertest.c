@@ -35,42 +35,81 @@ char *passwhite(char *str)
 	return (str);
 }
 
-int		stupid(char *str)
+char *password(char *str)
 {
-	if (ft_strnstr(str, "echo", 4))
-	{
-		if (ft_strnstr(passwhite(str + 5),"-n", 2))
-			return 'N';
-		else
-			return 'E';
-	}
-	if (ft_strnstr(str, "cd", 4))
-		return 'C';
-	if (ft_strnstr(str, "pwd", 3))
-		return 'P';
-	if (ft_strnstr(str, "export", 6))
-		return 'X';
-	if (ft_strnstr(str, "unset", 5))
-		return 'U';
-	if (ft_strnstr(str, "env", 3))
-		return 'V';
-	if (ft_strnstr(str, "exit", 4))
-		return 'Z';
-	else
-		return (0);
+	while (*str && (*str != ' '))
+		str++;
+	return (str);
 }
 
-t_token *token(char *str)
+int ft_strlenms(char *str)
 {
-	char **buffer;
+	int i;
+	int check;
 
-	buffer = ft_split(str, ' ');
-	//pb du split c'est que du coup, les arguments aussi ne sont pas parsed
-	printstrtab(buffer);
-	//str = passwhite(str);
-	//int result = stupid(str);
-	//printf ("result %c \n", result);
-	if (str)
-		return (NULL);
-	return (NULL);
+	i = 0;
+	check = 0;
+	if (str[i] == '|')
+		return (1);
+	if (str[i] == '>' || str[i] == '<')
+	{
+		while (str[i] && (str[i] == '>' || str[i] == '<' ))
+			i++;
+		return (i);
+	}
+	if (str[i] == 39 || str[i] == 34)
+	{
+		check = (int)str[i];
+		i++;
+		while (str[i] && str[i] != check)
+            i++;
+        if (str[i] == check)
+			i++;
+        return (i);
+	}
+	while (str[i] && (str[i] != ' ' && str[i] != '|' && str[i] != '>' && str[i] != '<'))
+		i++;
+	return (i);
+}
+void printLinkedList(t_list *head)
+{
+	t_list *current = head;
+
+	while (current != NULL)
+	{
+		printf("%s ", (char *)(current->content));
+		current = current->next;
+	}
+
+	printf("\n");
+}
+
+t_list *token(t_minishell *mini)
+{
+	int len;
+	int i;
+	char *content;
+
+	len = 0;
+	i = -1;
+	while (*mini->reader != '\0')
+	{
+		mini->reader = passwhite(mini->reader);
+		if (*mini->reader == '\0')
+			break;
+		len = ft_strlenms(mini->reader);
+		content = malloc(len + 1);
+		if (!content)
+			return (NULL);
+		while (++i < len)
+			content[i] = mini->reader[i];
+		content[i] = '\0';
+		ft_lstadd_back(&mini->head, ft_lstnew(ft_strdup(content)));
+		free(content);
+		mini->reader = mini->reader + len;
+		i = -1;
+	}
+	//printLinkedList(mini->head);
+
+	return (mini->head);
 }
