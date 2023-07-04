@@ -22,6 +22,5 @@ void    ft_builtins(t_minishell *mini)
             printf("Le processus fils s'est terminé avec le code de sortie : %d\n", exit_status);
         }
     }
-
     free(path);
 }

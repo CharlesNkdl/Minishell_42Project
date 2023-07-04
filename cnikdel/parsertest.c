@@ -42,8 +42,6 @@ char *password(char *str)
 	return (str);
 }
 
-
-
 int ft_strlenms(char *str)
 {
 	int i;
