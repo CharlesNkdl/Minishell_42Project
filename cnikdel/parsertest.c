@@ -42,6 +42,32 @@ char *password(char *str)
 	return (str);
 }
 
+char **strdbldup(char **str)
+{
+	int count;
+	char **copy;
+	int i;
+
+	count = -1;
+	i = -1;
+	while (str[++count])
+		count++;
+	copy = (char **)malloc((count + 1) * sizeof(char *));
+	if (!copy)
+		return (NULL);
+	while (++i < count)
+	{
+		copy[i] = ft_strdup(str[i]);
+		if (!copy[i])
+		{
+			ft_free(copy, i);
+			return (NULL);
+		}
+	}
+	copy[count] = NULL;
+	return (copy);
+}
+
 int ft_strlenms(char *str)
 {
 	int i;
@@ -110,19 +136,25 @@ t_list *token(t_minishell *mini)
 		i = -1;
 	}
 	//printLinkedList(mini->head);
-
 	return (mini->head);
 }
+
 char  *substractquote(char *str, int check)
 {
 	char *buffer;
 	(void)check;
 
 	buffer = 0;
-	buffer = ft_substr(str, 1, ft_strlen(str) - 1);
+	buffer = ft_substr(str, 1, ft_strlen(str) - 2);
 	free(str);
 	return (buffer);
 }
+
+char*	replacethis(char *str, char **envp)
+{
+
+}
+
 
 void	parser(t_minishell **mini)
 {
@@ -135,20 +167,21 @@ void	parser(t_minishell **mini)
 	while (ptr)
 	{
 		content = ptr->content;
+		printf("%s \n", content);
 		while (*content)
 		{
 			if (*(content) == 34 && check != 3)
 				check += 1;
 			if (*(content) == 39 && check != 1)
 				check += 3;
-			/*if (check == 1 && ptr->content == '$')
-				replacethis((char *)ptr->content);*/
+			if ((check == 1 || check == 0) && ptr->content == '$')
+				ptr->content = replacethis((char *)ptr->content, (*mini)->envp);
 			content = content + 1;
 		}
 		if (check != 0 && (check % 2))
 			perror("parsing");
 		else if (check != 0)
-			*(char *)(ptr->content) = *substractquote((char *)ptr->content, check);
+			(ptr->content) = substractquote((char *)ptr->content, check);
 		check = 0;
 		ptr = ptr->next;
 	}

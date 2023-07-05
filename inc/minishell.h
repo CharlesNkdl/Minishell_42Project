@@ -61,5 +61,7 @@ void	free_tok(t_list **bucket);
 void    ft_builtins(t_minishell *mini);
 void printLinkedList(t_list *head);
 void	parser(t_minishell **mini);
+void	**ft_free(char **tabl, int i);
+char **strdbldup(char **str);
 
 #endif

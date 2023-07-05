@@ -14,7 +14,7 @@ int main(int argc, char **argv, char **envp)
 
 	mini = malloc(sizeof(t_minishell));
 	mini->reader = NULL;
-	mini->envp = envp;
+	mini->envp = strdbldup(envp);
 	mini->head = NULL;
 	if (argc != 1)
 	{
