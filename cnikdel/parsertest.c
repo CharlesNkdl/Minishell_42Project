@@ -150,10 +150,6 @@ char  *substractquote(char *str, int check)
 	return (buffer);
 }
 
-char*	replacethis(char *str, char **envp)
-{
-
-}
 
 
 void	parser(t_minishell **mini)
@@ -174,8 +170,8 @@ void	parser(t_minishell **mini)
 				check += 1;
 			if (*(content) == 39 && check != 1)
 				check += 3;
-			if ((check == 1 || check == 0) && ptr->content == '$')
-				ptr->content = replacethis((char *)ptr->content, (*mini)->envp);
+			/*if ((check == 1 || check == 0) && ptr->content == '$')
+				ptr->content = replacethis((char *)ptr->content, (*mini)->envp);*/
 			content = content + 1;
 		}
 		if (check != 0 && (check % 2))
