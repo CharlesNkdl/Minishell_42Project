@@ -14,7 +14,7 @@ int main(int argc, char **argv, char **envp)
 
 	mini = malloc(sizeof(t_minishell));
 	mini->reader = NULL;
-	mini->envp = envp;
+	mini->envp = strdbldup(envp);
 	mini->head = NULL;
 	if (argc != 1)
 	{
@@ -29,6 +29,7 @@ int main(int argc, char **argv, char **envp)
 		//Permet de mettre la commande dans un historique, on peut du coup le recuperer avec les fleches dans le shell
 		add_history(mini->reader);
 		token(mini);
+		parser(&mini);
 		//printLinkedList(mini->head);
 		ft_builtins(mini);
 		free_tok(&mini->head);

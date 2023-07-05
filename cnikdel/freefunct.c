@@ -14,3 +14,17 @@ void	free_tok(t_list **bucket)
 	}
 	*bucket = NULL;
 }
+
+void	**ft_free(char **tabl, int i)
+{
+	int	j;
+
+	j = 0;
+	while (j < i && tabl[j])
+	{
+		free(tabl[j]);
+		j++;
+	}
+	free(tabl);
+	return (0);
+}
