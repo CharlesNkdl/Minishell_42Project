@@ -1,5 +1,17 @@
 
 
+void    ft_full_unset(t_minishell *env, char *supr[])
+{
+    int i;
+
+    i = 0;
+    while(supr[i])
+    {
+        ft_unset(env, supr[i]);
+        i++;
+    }
+}
+
 void    ft_unset(t_minishell *env, char *supr)
 {
     int i;
@@ -20,7 +32,9 @@ void    ft_unset(t_minishell *env, char *supr)
                 i++;
             }
             env->envp[i] = NULL;
+            exit;
         }
     }
+    perror("Une des variables a supprimer n'existe pas");
 }
 
