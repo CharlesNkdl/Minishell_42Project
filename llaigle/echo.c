@@ -36,3 +36,4 @@ void 	ft_echo(char **arg)
 	if (opt == 0)
 		write(1, "\n", 1);
 }
+

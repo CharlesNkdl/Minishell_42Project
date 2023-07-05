@@ -8,5 +8,5 @@ void		ft_pwd(void)
 	if (getcwd(cwd, PATH_MAX))
 		ft_printf("%s\n", cwd);
     else
-        ft_printf("Erreur, j'ai pas reussi le sang\n");
+        perror("Pwd");
 }
