@@ -4,6 +4,8 @@
 
 Le projet nous amenes a travailler sur la mise au point d'un Shell fonctionnel en C.
 
+![Schema](minishelldraw.png)
+
 ### a) ***Histoire***
 
 Le Shell, aussi appelle l'interface systeme est celui qui fourni l'interface utilisateur du systeme d'exploitation. C'est la couche la plus externe et nous permet de communiquer avec le systeme d'exploitation.
